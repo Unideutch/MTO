@@ -1,0 +1,205 @@
+// TOOLBAR
+.toolbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 0 25px;
+  margin-bottom: 18px;
+  box-sizing: border-box;
+
+  width: 100%;
+  height: 70px;
+  position: relative;
+  background: white;
+
+}
+
+// TOOLBAR LOGO
+.toolbar-logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+
+  height: 40px;
+}
+
+.toolbar-logo-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.toolbar-logo-title {
+  color: #000;
+  font-family: Montserrat, Roboto, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+// TOOLBAR TITLE
+.toolbar-title {
+  color: #000;
+  font-family: Montserrat, Roboto, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-align: center;
+}
+
+// TOOLBAR ACCOUNT
+.toolbar-account {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+
+  padding: 5px;
+  border: none;
+  background: none;
+}
+// Это кнопка крч. Для теста сделал
+.toolbar-account:active {
+  background: #1976d2;
+}
+// Конец теста
+
+.toolbar-account-photo {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+
+.toolbar-account-name {
+  text-align: center;
+  color: #42A7DD;
+  font-size: 14px;
+  font-family: Montserrat, Roboto, sans-serif;
+  font-weight: 600;
+  text-transform: capitalize;
+  word-wrap: break-word;
+}
+@media (max-width: 980px) {
+  .toolbar-account-name { width: min-content }
+}
+
+
+// MENU
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+
+  border-radius: 4px;
+  border: 1px solid #F5F5F5;
+  background: #FFF;
+  overflow: hidden;
+  margin-left: 24px;
+  margin-right: 32px;
+  float: left;
+
+  width: fit-content;
+  height: calc(100% - 120px);
+  min-height: 358px;
+}
+
+.menu-navBar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.menu-button {
+  height: 42px;
+  width: 42px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+// Это кнопка крч. Для теста сделал
+.menu-button:active {
+  background: #1976d2;
+}
+// Конец теста
+
+.menu-navButtons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-settingsButton {
+  align-self: end;
+}
+
+
+// CONTENT
+.content {
+  margin-right: 32px;
+  margin-left: 100px;
+}
+
+// CONTENT PATH AND SETTINGS BUTTON
+.content-pathAndButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.content-path {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+
+  color: #646464;
+  font-family: Montserrat, Roboto, sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  white-space: nowrap;
+}
+.content-path .latest {
+  font-weight: 600;
+}
+
+.content-settingsButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+
+  border: 0;
+  border-radius: 4px;
+  background: #BABABA;
+
+  padding: 7px 12px;
+
+  color: #FFF;
+  text-align: center;
+  font-family: Montserrat, Roboto, sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+// Это кнопка крч. Для теста сделал
+.content-settingsButton:active {
+  background: #1976d2;
+}
+// Конец теста
