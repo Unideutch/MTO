@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+// Handbook pages
+import { OsUsageComponent } from './handbook_pages/os-usage/os-usage.component';
+import { CategoriesComponent } from './handbook_pages/categories/categories.component';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CategoriesComponent } from './categories/categories.component';
 import { SimpeViewComponent } from './simpe-view/simpe-view.component';
 import { FullViewComponent } from './full-view/full-view.component';
 import { TypesComponent } from './types/types.component';
@@ -30,7 +33,8 @@ import { EditingMTOC1Component } from './editing-mto-c1/editing-mto-c1.component
     RecommendationsComponent,
     AddMTOComponent,
     EditingMTOComponent,
-    EditingMTOC1Component
+    EditingMTOC1Component,
+    OsUsageComponent,
   ],
   imports: [
     BrowserModule,
