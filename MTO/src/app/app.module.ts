@@ -9,12 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SimpeViewComponent } from './simpe-view/simpe-view.component';
 import { FullViewComponent } from './full-view/full-view.component';
-import { TypesComponent } from './types/types.component';
 import { AccessComponent } from './access/access.component';
-import { UsageComponent } from './usage/usage.component';
-import { AccountsComponent } from './accounts/accounts.component';
-import { BudgetsComponent } from './budgets/budgets.component';
-import { RecommendationsComponent } from './recommendations/recommendations.component';
 import { AddMTOComponent } from './add-mto/add-mto.component';
 import { EditingMTOComponent } from './editing-mto/editing-mto.component';
 import { EditingMTOC1Component } from './editing-mto-c1/editing-mto-c1.component';
@@ -25,12 +20,7 @@ import { EditingMTOC1Component } from './editing-mto-c1/editing-mto-c1.component
     CategoriesComponent,
     SimpeViewComponent,
     FullViewComponent,
-    TypesComponent,
     AccessComponent,
-    UsageComponent,
-    AccountsComponent,
-    BudgetsComponent,
-    RecommendationsComponent,
     AddMTOComponent,
     EditingMTOComponent,
     EditingMTOC1Component,

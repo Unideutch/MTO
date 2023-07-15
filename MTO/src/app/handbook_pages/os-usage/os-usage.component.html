@@ -1,1 +1,71 @@
-<p>os-usage works!</p>
+<div class="content-title">Использование ОС</div>
+
+<div class="addButton-container">
+  <button class="addButton">
+    <span>Добавить</span>
+    <img src="assets/img/plus.svg">
+  </button>
+</div>
+
+<div class="table">
+  <div class="table-cells">
+    <div class="table-row table-header">
+      <div>Использование ОС</div>
+      <div>Порядковый номер отображения категорий ОС</div>
+      <div></div>
+    </div>
+    <div class="table-row" *ngFor="let item of model.items; index as i">
+      <div>{{ item.name }}</div>
+      <div>{{ i + 1 }}</div>
+      <div (click)="removeItem(item)">
+        <img src="assets/img/bin.svg" alt=""/>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-paginator">
+    <div class="paginator-buttons">
+      <div class="paginator-button" (click)="loadContent(1)">
+        <img src="assets/img/arrow-end-left.svg" alt=""/>
+      </div>
+      <div class="paginator-button" (click)="loadContent(model.currentPage - 1)">
+        <img src="assets/img/arrow-60-left.svg" alt=""/>
+      </div>
+      <div class="paginator-button"
+           *ngFor="let page of previousPages"
+           (click)="loadContent(page)">
+        {{ page }}
+      </div>
+      <div class="paginator-button current">
+        {{ model.currentPage }}
+      </div>
+      <div class="paginator-button"
+           *ngFor="let page of nextPages"
+           (click)="loadContent(page)">
+        {{ page }}
+      </div>
+      <div class="paginator-button" (click)="loadContent(model.currentPage + 1)">
+        <img src="assets/img/arrow-60-right.svg" alt=""/>
+      </div>
+      <div class="paginator-button" (click)="loadContent(model.totalPages)">
+        <img src="assets/img/arrow-end-right.svg" alt=""/>
+      </div>
+    </div>
+
+    <div class="paginator-info">
+      <span>[1]</span>
+      <span> - </span>
+      <span>[4]</span>
+      <span> из </span>
+      <span>[4]</span>
+      <span> элементов</span>
+    </div>
+  </div>
+</div>
+
+<div class="addButton-container">
+  <button class="addButton">
+    <span>Добавить</span>
+    <img src="assets/img/plus.svg">
+  </button>
+</div>
