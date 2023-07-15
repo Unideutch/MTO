@@ -7,24 +7,25 @@ import {OsUsageContentItem} from "../models/os-usage-content-item";
   providedIn: 'root',
 })
 export class OsUsageApi {
-  // TODO: Add backend requests
-  public loadPage(page: number): Observable<OsUsageContent> {
-    if (page > 5) page = 5;
-    else if (page < 1) page = 1;
+  // TODO: It is a mock logic. It have to be replaced by a backend request
+  public getContent(skip: number, take: number): Observable<OsUsageContent> {
+    const totalPagesNumber: number = 10;
+    if (skip >= totalPagesNumber) skip = totalPagesNumber - take;
 
-    let items: OsUsageContentItem[] = [
-      new OsUsageContentItem('В учебном процессе'),
-      new OsUsageContentItem('В научном процессе'),
-      new OsUsageContentItem('В хозяйственной дейстельности'),
-      new OsUsageContentItem('В обеспечении учебного процесса')
-    ];
+    let items: OsUsageContentItem[] = [];
+    for (let i = 0; i < take && i + skip < totalPagesNumber; i++) {
+      let item: OsUsageContentItem = new OsUsageContentItem(
+        `OsUsageContentItem: ${skip + i + 1}`
+      );
+      items.push(item);
+    }
 
     let content: OsUsageContent = new OsUsageContent(
-      5,
-      page,
+      totalPagesNumber,
+      skip,
       items
     );
 
-    return of(content).pipe(delay(100))
+    return of(content).pipe(delay(100));
   }
 }

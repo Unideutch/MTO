@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {OsUsageApi} from "./api/os-usage-api";
 import {OsUsageContent} from "./models/os-usage.content";
 import {OsUsageContentItem} from "./models/os-usage-content-item";
+import {ItemsHandler} from "../../utils/items-handler";
 
 @Component({
   selector: 'os-usage',
@@ -9,15 +10,21 @@ import {OsUsageContentItem} from "./models/os-usage-content-item";
   styleUrls: ['./os-usage.component.scss']
 })
 export class OsUsageComponent {
+  public itemsPerPage: number = 3;
   public model: OsUsageContent = new OsUsageContent();
-  public previousPages!: number[];
+
+  public totalPages: number = 1;
+  public currentPage: number = 1;
   public nextPages!: number[];
+  public previousPages!: number[];
 
   constructor(
     private readonly api: OsUsageApi
   ) {
-    this.loadContent(2);
+    this.loadContentByPage(this.currentPage);
   }
+
+  // Data handling
 
   public removeItem(item: OsUsageContentItem): void {
     let index: number = this.model.items.indexOf(item);
@@ -29,19 +36,22 @@ export class OsUsageComponent {
     this.model.items.splice(index, 1);
   }
 
-  public loadContent(page: number): void {
-    this.api
-      .loadPage(page)
-      .subscribe(content => {
-        this.previousPages = [];
-        for (let page: number = 0; page < content.currentPage - 1; page++) {
-          this.previousPages.push(page + 1);
-        }
+  public loadContentByPage(page: number): void {
+    if (page < 1) page = 1;
+    else if (page > this.totalPages) page = this.totalPages;
 
-        this.nextPages = [];
-        for (let page: number = content.currentPage + 1; page <= content.totalPages; page++) {
-          this.nextPages.push(page);
-        }
+    let skip: number = ItemsHandler.getSkipItemsNumberByPage(page, this.itemsPerPage);
+    this.loadContent(skip, this.itemsPerPage);
+  }
+
+  private loadContent(skip: number, take: number): void {
+    this.api
+      .getContent(skip, take)
+      .subscribe(content => {
+        this.totalPages = ItemsHandler.getTotalPagesNumber(content.totalItemsNumber, this.itemsPerPage);
+        this.currentPage = ItemsHandler.getCurrentPage(content.skippedItems, this.itemsPerPage);
+        this.previousPages = ItemsHandler.getPreviousPages(this.currentPage);
+        this.nextPages = ItemsHandler.getNextPages(this.currentPage, this.totalPages);
 
         this.model = content;
       });

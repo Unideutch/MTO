@@ -2,8 +2,8 @@
 
 export class OsUsageContent {
   constructor(
-    public totalPages: number = 1,
-    public currentPage: number = 1,
+    public totalItemsNumber: number = 100,
+    public skippedItems: number = 10,
     public items: OsUsageContentItem[] = [],
   ) {
   }

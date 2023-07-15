@@ -25,39 +25,39 @@
 
   <div class="table-paginator">
     <div class="paginator-buttons">
-      <div class="paginator-button" (click)="loadContent(1)">
+      <div class="paginator-button" (click)="loadContentByPage(1)">
         <img src="assets/img/arrow-end-left.svg" alt=""/>
       </div>
-      <div class="paginator-button" (click)="loadContent(model.currentPage - 1)">
+      <div class="paginator-button" (click)="loadContentByPage(currentPage - 1)">
         <img src="assets/img/arrow-60-left.svg" alt=""/>
       </div>
       <div class="paginator-button"
            *ngFor="let page of previousPages"
-           (click)="loadContent(page)">
+           (click)="loadContentByPage(page)">
         {{ page }}
       </div>
       <div class="paginator-button current">
-        {{ model.currentPage }}
+        {{ currentPage }}
       </div>
       <div class="paginator-button"
            *ngFor="let page of nextPages"
-           (click)="loadContent(page)">
+           (click)="loadContentByPage(page)">
         {{ page }}
       </div>
-      <div class="paginator-button" (click)="loadContent(model.currentPage + 1)">
+      <div class="paginator-button" (click)="loadContentByPage(currentPage + 1)">
         <img src="assets/img/arrow-60-right.svg" alt=""/>
       </div>
-      <div class="paginator-button" (click)="loadContent(model.totalPages)">
+      <div class="paginator-button" (click)="loadContentByPage(totalPages)">
         <img src="assets/img/arrow-end-right.svg" alt=""/>
       </div>
     </div>
 
     <div class="paginator-info">
-      <span>[1]</span>
+      <span>{{ model.skippedItems }}</span>
       <span> - </span>
-      <span>[4]</span>
+      <span>{{ model.skippedItems + itemsPerPage }}</span>
       <span> из </span>
-      <span>[4]</span>
+      <span>{{ model.totalItemsNumber }}</span>
       <span> элементов</span>
     </div>
   </div>
