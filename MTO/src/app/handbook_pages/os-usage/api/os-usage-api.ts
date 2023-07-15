@@ -1,7 +1,7 @@
 ﻿import {Injectable} from "@angular/core";
 import {delay, Observable, of} from "rxjs";
-import {OsUsageContent} from "./models/os-usage.content";
-import {OsUsageContentItem} from "./models/os-usage-content-item";
+import {OsUsageContent} from "../models/os-usage.content";
+import {OsUsageContentItem} from "../models/os-usage-content-item";
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +9,7 @@ import {OsUsageContentItem} from "./models/os-usage-content-item";
 export class OsUsageApi {
   // TODO: Add backend requests
   public loadPage(page: number): Observable<OsUsageContent> {
-    if ( page > 5) page = 5;
+    if (page > 5) page = 5;
     else if (page < 1) page = 1;
 
     let items: OsUsageContentItem[] = [

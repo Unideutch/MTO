@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {OsUsageApi} from "./os-usage.api";
+import {OsUsageApi} from "./api/os-usage.api";
 import {OsUsageContent} from "./models/os-usage.content";
 import {OsUsageContentItem} from "./models/os-usage-content-item";
 
