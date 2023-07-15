@@ -68,11 +68,24 @@
         [Категории ОС]
       </span>
     </div>
-    <button class="content-settingsButton">
-      <span>Настройки</span>
-      <img src="assets/img/gearWhite.svg">
-    </button>
+    <div class="dropdown">
+      <button class="content-settingsButton">
+        <span>Настройки</span>
+        <img src="assets/img/gearWhite.svg">
+      </button>
+      <div class="dropdown-content">
+        <div class="dropdown-inside" style="float:right;">
+          <button class="dropdown-inside-button">Справочник ></button>
+          <div class="dropdown-inside-content">
+            <a>Категории МТО</a>
+            <a>Использование МТО</a>
+          </div>
+        </div>
+        <a>Настройки доступа</a>
+      </div>
+    </div>
+
   </div>
 
-  <app-categories></app-categories>
+  <router-outlet></router-outlet>
 </div>
