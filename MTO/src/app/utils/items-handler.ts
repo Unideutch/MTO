@@ -10,14 +10,14 @@
     totalItemsNumber: number,
     itemsPerPage: number
   ): number {
-    return Math.ceil( totalItemsNumber / itemsPerPage );
+    return Math.ceil(totalItemsNumber / itemsPerPage);
   }
 
   static getCurrentPage(
     skippedItems: number,
     itemsPerPage: number
   ): number {
-    return Math.ceil( skippedItems / itemsPerPage ) + 1
+    return Math.ceil(skippedItems / itemsPerPage) + 1
   }
 
   public static getPreviousPages(

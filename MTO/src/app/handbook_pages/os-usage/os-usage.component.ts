@@ -28,7 +28,6 @@ export class OsUsageComponent {
 
   public removeItem(item: OsUsageContentItem): void {
     let index: number = this.model.items.indexOf(item);
-    // Item not found
     if (index < 0) {
       return;
     }
@@ -37,8 +36,11 @@ export class OsUsageComponent {
   }
 
   public loadContentByPage(page: number): void {
-    if (page < 1) page = 1;
-    else if (page > this.totalPages) page = this.totalPages;
+    if (page < 1) {
+      page = 1;
+    } else if (page > this.totalPages) {
+      page = this.totalPages;
+    }
 
     let skip: number = ItemsHandler.getSkipItemsNumberByPage(page, this.itemsPerPage);
     this.loadContent(skip, this.itemsPerPage);
