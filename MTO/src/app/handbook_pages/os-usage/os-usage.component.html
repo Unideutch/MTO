@@ -31,18 +31,10 @@
       <div class="paginator-button" (click)="loadContentByPage(currentPage - 1)">
         <img src="assets/img/arrow-60-left.svg" alt=""/>
       </div>
-      <div class="paginator-button"
-           *ngFor="let page of previousPages"
-           (click)="loadContentByPage(page)">
-        {{ page }}
-      </div>
-      <div class="paginator-button current">
-        {{ currentPage }}
-      </div>
-      <div class="paginator-button"
-           *ngFor="let page of nextPages"
-           (click)="loadContentByPage(page)">
-        {{ page }}
+      <div *ngFor="let page of pageInfos"
+           (click)="loadContentByPage(page.pageNumber)"
+           class="paginator-button" [ngClass]="{'current' : page.isActive}" >
+        {{ page.pageNumber }}
       </div>
       <div class="paginator-button" (click)="loadContentByPage(currentPage + 1)">
         <img src="assets/img/arrow-60-right.svg" alt=""/>

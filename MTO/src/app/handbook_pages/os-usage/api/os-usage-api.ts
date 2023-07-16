@@ -2,6 +2,7 @@
 import {delay, Observable, of} from "rxjs";
 import {OsUsageContent} from "../models/os-usage.content";
 import {OsUsageContentItem} from "../models/os-usage-content-item";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({providedIn: 'root'})
 export class OsUsageApi {
@@ -24,10 +25,21 @@ export class OsUsageApi {
     return of(content).pipe(delay(100));
   }
 
+  public deleteItem(itemId: number): Observable<void> {
+    let index: number = OsUsageApi.items.findIndex(item => item.id == itemId);
+    if (index < 0) {
+      return new Observable<void>().pipe(delay(100));
+    }
+
+    OsUsageApi.items.splice(index, 1);
+    return new Observable<void>().pipe(delay(100));
+  }
+
   private static generateFakeData(): OsUsageContentItem[] {
+    console.log(1);
     let items: OsUsageContentItem[] = [];
     for (let i = 0; i < 100; i++) {
-      let item: OsUsageContentItem = new OsUsageContentItem(`Item ${i}`);
+      let item: OsUsageContentItem = new OsUsageContentItem(i, `Item ${i}`);
       items.push(item);
     }
 
