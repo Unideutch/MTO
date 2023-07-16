@@ -21,23 +21,27 @@
   }
 
   public static getPreviousPages(
-    currentPage: number
+    currentPage: number,
+    maxPreviousPages: number = 5
   ): number[] {
     let previousPages: number[] = [];
-    for (let page = 0; page < currentPage - 1; page++) {
-      previousPages.push(page + 1);
+    let max: number = Math.min(currentPage - 1, maxPreviousPages);
+    for (let page = 0; page < max; page++) {
+      previousPages.push(currentPage - page - 1);
     }
 
-    return previousPages;
+    return previousPages.reverse();
   }
 
   public static getNextPages(
     currentPage: number,
-    totalPagesNumber: number
+    totalPagesNumber: number,
+    maxNextPages: number = 5
   ): number[] {
     let nextPages: number[] = [];
-    for (let page = currentPage + 1; page <= totalPagesNumber; page++) {
-      nextPages.push(page);
+    let max: number = Math.min(totalPagesNumber - currentPage - 1, maxNextPages);
+    for (let i = 0; i < max; i++) {
+      nextPages.push(i + currentPage + 1);
     }
 
     return nextPages;

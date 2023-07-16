@@ -10,7 +10,7 @@ import {ItemsHandler} from "../../utils/items-handler";
   styleUrls: ['./os-usage.component.scss']
 })
 export class OsUsageComponent {
-  public itemsPerPage: number = 3;
+  public itemsPerPage: number = 5;
   public model: OsUsageContent = new OsUsageContent();
 
   public totalPages: number = 1;
