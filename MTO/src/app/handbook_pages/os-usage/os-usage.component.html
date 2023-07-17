@@ -28,28 +28,28 @@
       <div class="paginator-button" (click)="loadContentByPage(1)">
         <img src="assets/img/arrow-end-left.svg" alt=""/>
       </div>
-      <div class="paginator-button" (click)="loadContentByPage(currentPage - 1)">
+      <div class="paginator-button" (click)="loadContentByPage(paginator.currentPage - 1)">
         <img src="assets/img/arrow-60-left.svg" alt=""/>
       </div>
-      <div *ngFor="let page of pageInfos"
+      <div *ngFor="let page of paginator.pageInfos"
            (click)="loadContentByPage(page.pageNumber)"
            class="paginator-button" [ngClass]="{'current' : page.isActive}" >
         {{ page.pageNumber }}
       </div>
-      <div class="paginator-button" (click)="loadContentByPage(currentPage + 1)">
+      <div class="paginator-button" (click)="loadContentByPage(paginator.currentPage + 1)">
         <img src="assets/img/arrow-60-right.svg" alt=""/>
       </div>
-      <div class="paginator-button" (click)="loadContentByPage(totalPages)">
+      <div class="paginator-button" (click)="loadContentByPage(paginator.totalPages)">
         <img src="assets/img/arrow-end-right.svg" alt=""/>
       </div>
     </div>
 
     <div class="paginator-info">
-      <span>{{ model.skippedItems }}</span>
+      <span>{{ paginator.shownItemsInfo.itemsFrom }}</span>
       <span> - </span>
-      <span>{{ model.skippedItems + model.items.length }}</span>
+      <span>{{ paginator.shownItemsInfo.itemsTo }}</span>
       <span> из </span>
-      <span>{{ model.totalItemsNumber }}</span>
+      <span>{{ paginator.shownItemsInfo.totalItems }}</span>
       <span> элементов</span>
     </div>
   </div>

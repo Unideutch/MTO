@@ -1,4 +1,4 @@
-﻿export class PaginatorItemsInfoHandler {
+﻿export class PaginatorPageHelper {
   public static getSkipItemsNumberByPage(
     page: number,
     itemsPerPage: number
@@ -11,5 +11,12 @@
     itemsPerPage: number
   ): number {
     return Math.ceil(totalItemsNumber / itemsPerPage);
+  }
+
+  public static getCurrentPage(
+    skippedItems: number,
+    itemsPerPage: number
+  ): number {
+    return Math.ceil(skippedItems / itemsPerPage) + 1
   }
 }

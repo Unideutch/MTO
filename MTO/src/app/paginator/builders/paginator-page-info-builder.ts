@@ -1,13 +1,6 @@
-﻿import {PaginatorPage} from "./paginator-page";
+﻿import {PaginatorPage} from "../models/paginator-page";
 
 export class PaginatorPageInfoHandler {
-  static getCurrentPage(
-    skippedItems: number,
-    itemsPerPage: number
-  ): number {
-    return Math.ceil(skippedItems / itemsPerPage) + 1
-  }
-
   public static buildPageInfos(
     currentPage: number,
     totalPages: number,

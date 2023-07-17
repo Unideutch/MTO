@@ -2,9 +2,9 @@ import {Component} from '@angular/core';
 import {OsUsageApi} from "./api/os-usage-api";
 import {OsUsageContent} from "./models/os-usage.content";
 import {OsUsageContentItem} from "./models/os-usage-content-item";
-import {PaginatorItemsInfoHandler} from "../../paginator/paginator-items-info-handler";
-import {PaginatorPageInfoHandler} from "../../paginator/paginator-page-info-handler";
-import {PaginatorPage} from "../../paginator/paginator-page";
+import {PaginatorPageHelper} from "../../paginator/paginator-page-helper";
+import {PaginatorDataBuilder} from "../../paginator/builders/paginator-data-builder";
+import {PaginatorData} from "../../paginator/models/paginator-data";
 
 @Component({
   selector: 'os-usage',
@@ -14,31 +14,25 @@ import {PaginatorPage} from "../../paginator/paginator-page";
 export class OsUsageComponent {
   public itemsPerPage: number = 10;
   public model: OsUsageContent = new OsUsageContent();
-
-  public totalPages: number = 1;
-  public currentPage: number = 1;
-  public pageInfos: PaginatorPage[] = [];
+  public paginator: PaginatorData = new PaginatorData();
 
   constructor(
     private readonly api: OsUsageApi
   ) {
-    this.loadContentByPage(this.currentPage);
+    this.loadContentByPage(this.paginator.currentPage);
   }
 
   // Data handling
 
   public removeItem(item: OsUsageContentItem): void {
-    this.api.deleteItem(item.id).subscribe(() => this.loadContentByPage(this.currentPage));
+    this.api.deleteItem(item.id).subscribe(() => this.loadContentByPage(this.paginator.currentPage));
   }
 
   public loadContentByPage(page: number): void {
-    if (page < 1) {
-      page = 1;
-    } else if (page > this.totalPages) {
-      page = this.totalPages;
-    }
+    if (page < 1) page = 1;
+    else if (page > this.paginator.totalPages) page = this.paginator.totalPages;
 
-    let skip: number = PaginatorItemsInfoHandler.getSkipItemsNumberByPage(page, this.itemsPerPage);
+    let skip: number = PaginatorPageHelper.getSkipItemsNumberByPage(page, this.itemsPerPage);
     this.loadContent(skip, this.itemsPerPage);
   }
 
@@ -46,9 +40,12 @@ export class OsUsageComponent {
     this.api
       .getContent(skip, take)
       .subscribe(content => {
-        this.totalPages = PaginatorItemsInfoHandler.getTotalPagesNumber(content.totalItemsNumber, this.itemsPerPage);
-        this.currentPage = PaginatorPageInfoHandler.getCurrentPage(content.skippedItems, this.itemsPerPage);
-        this.pageInfos = PaginatorPageInfoHandler.buildPageInfos(this.currentPage, this.totalPages);
+        this.paginator = PaginatorDataBuilder.build(
+          this.itemsPerPage,
+          content.skippedItems,
+          content.items.length,
+          content.totalItemsNumber
+        );
 
         this.model = content;
       });

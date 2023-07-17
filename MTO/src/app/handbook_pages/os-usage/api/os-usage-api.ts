@@ -36,8 +36,8 @@ export class OsUsageApi {
 
   private static generateFakeData(): OsUsageContentItem[] {
     let items: OsUsageContentItem[] = [];
-    for (let i = 0; i < 1; i++) {
-      let item: OsUsageContentItem = new OsUsageContentItem(i, `Item ${i}`);
+    for (let i = 0; i < 100; i++) {
+      let item: OsUsageContentItem = new OsUsageContentItem(i, `Item ${i + 1}`);
       items.push(item);
     }
 
