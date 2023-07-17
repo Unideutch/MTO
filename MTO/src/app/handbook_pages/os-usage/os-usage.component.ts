@@ -22,10 +22,9 @@ export class OsUsageComponent {
     this.loadContentByPage(this.paginator.currentPage);
   }
 
-  // Data handling
-
   public removeItem(item: OsUsageContentItem): void {
-    this.api.deleteItem(item.id).subscribe(() => this.loadContentByPage(this.paginator.currentPage));
+    this.api.deleteItem(item.id)
+      .subscribe(() => this.loadContentByPage(this.paginator.currentPage));
   }
 
   public loadContentByPage(page: number): void {

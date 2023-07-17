@@ -4,10 +4,10 @@ import {OsUsageContent} from "../models/os-usage.content";
 import {OsUsageContentItem} from "../models/os-usage-content-item";
 
 @Injectable({providedIn: 'root'})
+// TODO: It is all just a mock logic. It have to be replaced by a backend request
 export class OsUsageApi {
   private static items: OsUsageContentItem[] = OsUsageApi.generateFakeData();
 
-  // TODO: It is a mock logic. It have to be replaced by a backend request
   public getContent(skip: number, take: number): Observable<OsUsageContent> {
     if (skip >= OsUsageApi.items.length) {
       skip = OsUsageApi.items.length - take;
@@ -24,14 +24,13 @@ export class OsUsageApi {
     return of(content).pipe(delay(100));
   }
 
-  public deleteItem(itemId: number): Observable<void> {
+  public deleteItem(itemId: number): Observable<void | null> {
     let index: number = OsUsageApi.items.findIndex(item => item.id == itemId);
-    if (index < 0) {
-      return new Observable<void>().pipe(delay(100));
+    if (index > -1) {
+      OsUsageApi.items.splice(index, 1);
     }
 
-    OsUsageApi.items.splice(index, 1);
-    return new Observable<void>().pipe(delay(100));
+    return of(void 0).pipe(delay(10));
   }
 
   private static generateFakeData(): OsUsageContentItem[] {
