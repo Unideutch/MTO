@@ -1,5 +1,4 @@
 ﻿import {PaginatorPage} from "./paginator-page";
-import {max} from "rxjs";
 
 export class PaginatorPageInfoHandler {
   static getCurrentPage(
@@ -15,7 +14,6 @@ export class PaginatorPageInfoHandler {
     maxPages: number = 5
   ): PaginatorPage[] {
     let pages: PaginatorPage[] = [];
-    console.log(123);
 
     let amountOfPagesToShow: number = totalPages - currentPage;
     if (amountOfPagesToShow > maxPages) {

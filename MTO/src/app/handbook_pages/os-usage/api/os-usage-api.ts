@@ -2,7 +2,6 @@
 import {delay, Observable, of} from "rxjs";
 import {OsUsageContent} from "../models/os-usage.content";
 import {OsUsageContentItem} from "../models/os-usage-content-item";
-import {HttpClient} from "@angular/common/http";
 
 @Injectable({providedIn: 'root'})
 export class OsUsageApi {
@@ -18,7 +17,7 @@ export class OsUsageApi {
 
     let content: OsUsageContent = new OsUsageContent(
       OsUsageApi.items.length,
-      skip,
+      Math.max(skip, 0),
       items
     );
 
@@ -36,9 +35,8 @@ export class OsUsageApi {
   }
 
   private static generateFakeData(): OsUsageContentItem[] {
-    console.log(1);
     let items: OsUsageContentItem[] = [];
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 1; i++) {
       let item: OsUsageContentItem = new OsUsageContentItem(i, `Item ${i}`);
       items.push(item);
     }
